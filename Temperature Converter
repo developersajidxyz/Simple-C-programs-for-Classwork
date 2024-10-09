@@ -1,0 +1,50 @@
+// TEMPERATURE CONVERTER
+#include <stdio.h>
+
+int main() {
+    float temperature, convertedTemperature;
+    char fromUnit, toUnit;
+
+    // Input temperature and units
+    printf("Enter the unit to convert from (C for Celsius, F for Fahrenheit, K for Kelvin): ");
+    scanf(" %c", &fromUnit);
+    printf("Enter the unit to convert to (C for Celsius, F for Fahrenheit, K for Kelvin): ");
+    scanf(" %c", &toUnit);
+    printf("Enter the temperature: ");
+    scanf("%f", &temperature);
+
+    // Conversion logics
+    if (fromUnit == 'C' || fromUnit == 'c') {
+        if (toUnit == 'F' || toUnit == 'f') {
+            convertedTemperature = (temperature * 9 / 5) + 32; // Celsius to Fahrenheit
+        } else if (toUnit == 'K' || toUnit == 'k') {
+            convertedTemperature = temperature + 273.15; // Celsius to Kelvin
+        } else {
+            convertedTemperature = temperature; // Celsius to Celsius
+        }
+    } else if (fromUnit == 'F' || fromUnit == 'f') {
+        if (toUnit == 'C' || toUnit == 'c') {
+            convertedTemperature = (temperature - 32) * 5 / 9; // Fahrenheit to Celsius
+        } else if (toUnit == 'K' || toUnit == 'k') {
+            convertedTemperature = (temperature - 32) * 5 / 9 + 273.15; // Fahrenheit to Kelvin
+        } else {
+            convertedTemperature = temperature; // Fahrenheit to Fahrenheit
+        }
+    } else if (fromUnit == 'K' || fromUnit == 'k') {
+        if (toUnit == 'C' || toUnit == 'c') {
+            convertedTemperature = temperature - 273.15; // Kelvin to Celsius
+        } else if (toUnit == 'F' || toUnit == 'f') {
+            convertedTemperature = (temperature - 273.15) * 9 / 5 + 32; // Kelvin to Fahrenheit
+        } else {
+            convertedTemperature = temperature; // Kelvin to Kelvin
+        }
+    } else {
+        printf("Invalid input unit!\n");
+        return 1;
+    }
+
+    // Display the result
+    printf("Converted temperature: %.2f %c\n", convertedTemperature, toUnit);
+
+    return 0;
+}
